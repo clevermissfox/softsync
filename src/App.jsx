@@ -18,8 +18,6 @@ const s3 = new S3Client({
 });
 const PLAY = "PLAY";
 const STOP = "STOP";
-console.log(import.meta.env.VITE_R2_ENDPOINT);
-console.log(import.meta.env.VITE_OPENAI_API_KEY);
 
 function App() {
   const [state, setState] = useState({
