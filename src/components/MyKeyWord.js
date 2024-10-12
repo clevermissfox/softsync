@@ -6,6 +6,7 @@ const myKeyWord = {
   wikipedia:
     "Wikipedia is a free, multilingual, web-based encyclopedia created and maintained by a community of volunteer editors. It is one of the most popular reference websites, offering millions of articles in various languages.",
   google: "Google Search: The world's most popular search engine",
+  coffee: "Coffee is made all over the world",
 };
 
 const myKeyWordFindKeys = Object.keys(myKeyWord);
