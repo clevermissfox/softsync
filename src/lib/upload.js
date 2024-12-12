@@ -8,7 +8,7 @@ import { myKeyWord, myKeyWordFindKeys } from "../components/MyKeyWord";
 
 const s3 = new S3Client({
   region: "auto",
-  endpoint: import.meta.env.VITE_R2_ENDPOINT,
+  endpoint: "https://813062f12232b3cc97c5d890147d2be9.r2.cloudflarestorage.com",
   credentials: {
     accessKeyId: import.meta.env.VITE_R2_ACCESS_KEY_ID,
     secretAccessKey: import.meta.env.VITE_R2_SECRET_ACCESS_KEY,
