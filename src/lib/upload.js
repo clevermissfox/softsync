@@ -7,8 +7,8 @@ import OpenAI from "openai";
 import { myKeyWord, myKeyWordFindKeys } from "../components/MyKeyWord";
 
 const s3 = new S3Client({
-  region: "auto",
-  endpoint: "https://813062f12232b3cc97c5d890147d2be9.r2.cloudflarestorage.com",
+  region: "",
+  endpoint: import.meta.env.VITE_R2_ENDPOINT,
   credentials: {
     accessKeyId: import.meta.env.VITE_R2_ACCESS_KEY_ID,
     secretAccessKey: import.meta.env.VITE_R2_SECRET_ACCESS_KEY,
