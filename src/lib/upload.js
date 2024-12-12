@@ -7,7 +7,7 @@ import OpenAI from "openai";
 import { myKeyWord, myKeyWordFindKeys } from "../components/MyKeyWord";
 
 const s3 = new S3Client({
-  region: "",
+  region: "auto",
   endpoint: import.meta.env.VITE_R2_ENDPOINT,
   credentials: {
     accessKeyId: import.meta.env.VITE_R2_ACCESS_KEY_ID,
