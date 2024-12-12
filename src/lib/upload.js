@@ -13,6 +13,7 @@ const s3 = new S3Client({
     accessKeyId: import.meta.env.VITE_R2_ACCESS_KEY_ID,
     secretAccessKey: import.meta.env.VITE_R2_SECRET_ACCESS_KEY,
   },
+  forcePathStyle: true
 });
 
 const openai = new OpenAI({
@@ -48,7 +49,7 @@ export async function generateAIVoice(file) {
 
     return [text[0][0], mp3];
   } catch (error) {
-    console.error("Error generating AI voice:", error);
+    console.error("Error generating AI voice from generateAIVoice fx:", error);
     throw error;
   }
 }
@@ -68,7 +69,7 @@ export async function uploadAIVoice(file) {
 
     await s3.send(command);
   } catch (error) {
-    console.log("Error uploading AI voice:", error);
+    console.log("Error uploading AI voice from uploadAIVoice fx:", error);
     throw error;
   }
 }
