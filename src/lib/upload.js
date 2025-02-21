@@ -69,9 +69,14 @@ export async function uploadAIVoice(file) {
 
     await s3.send(command);
   } catch (error) {
-    console.log("Error uploading AI voice from uploadAIVoice fx:", error);
-    throw error;
+  console.error("Error uploading AI voice:", error);
+  if (error.name === 'AccessDenied') {
+    console.error("Access denied. Check your R2 permissions.");
+  } else if (error.name === 'NoSuchBucket') {
+    console.error("Bucket not found. Check your bucket name.");
   }
+  throw error;
+}
 }
 
 export async function deleteData(fileName) {
