@@ -29,7 +29,7 @@ Create a .env file in the root of the project to define your environment-specifi
 
 #### Environment Variables
 
-To configure the project, create a `.env` file in the root directory with the following keys:
+To configure the project, create a `.env` file in the root directory with the following keys(prepend woth VITE on the .env of thia is a Vite project):
 
 - **OPENAI_API_KEY**: OpenAI API Key for accessing AI services.
 - **CLOUDFLARE_ACCOUNT_ID**: Cloudflare account ID for managing Cloudflare services.
@@ -37,11 +37,12 @@ To configure the project, create a `.env` file in the root directory with the fo
 - **R2_SECRET_ACCESS_KEY**: Secret key for R2 access (keep secure).
 - **R2_BUCKET_NAME**: Name of the R2 storage bucket.
 - **R2_ENDPOINT**: Endpoint URL for R2 storage API access.
+- **PUBLIC_R2_BUCKET_URL**: Publoc access to the files https://bucketUrl.com/fileNameWithEztension.mp3
 
 #### Resource Hints
 
 - **OpenAI API Key**: Obtain from your [OpenAI dashboard](https://platform.openai.com).
-- **Cloudflare Credentials**: Get these from the [Cloudflare dashboard](https://dash.cloudflare.com), under R2 storage settings.
+- **Cloudflare Credentials**: Get these from the [Cloudflare dashboard](https://dash.cloudflare.com), under R2 storage settings. get the R2_ACCESS_KEY and R2_SECRET_ACCESS_KEY by managing api settings from R3, add a user and you get these tokens 
 - **Security**: Ensure these keys remain secure and are not shared publicly.
 
   > To avoid **cors** error add these below code into your bucket cors section
