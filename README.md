@@ -105,6 +105,8 @@ pnpm start
 ./components/MyKeyWord.js
 Paste your KeyWord
 
+# Trigger a redeploy
+
 And Your cloudflare Audio file link ------
 https://dash.cloudflare.com/813062f12232b3cc97c5d890147d2be9/r2/default/buckets/missfox
 
