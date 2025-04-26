@@ -110,6 +110,6 @@ And Your cloudflare Audio file link ------
 https://dash.cloudflare.com/813062f12232b3cc97c5d890147d2be9/r2/default/buckets/missfox
 
 ### Read more
-- Trigger Redeploy
+- its working ??
 
 [See Instruction](./instructions/README.md)
