@@ -59,10 +59,10 @@ function App() {
       setState((prevState) => ({
         ...prevState,
         loading: false,
-        error: `Error: ${error.message}`,
+        error: `Error uploading audio`,
       }));
       await fetchFiles();
-      notify(`${state.error}`);
+      notify(`Error: ${error.message}`);
     }
   };
 
