@@ -98,7 +98,7 @@ function App() {
             }
           };
 
-          recorderRef.current.start();
+          recorderRef.current.start(1000);
           audioRef.current = [];
         } catch (error) {
           const errorMessage =
