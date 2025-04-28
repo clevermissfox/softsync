@@ -228,7 +228,6 @@ export default function App() {
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-6xl mb-7 font-semibold text-purple-600">
             Speech To AI-Speech 
-            {keyword && <p>{keyword}</p>}
           </h1>
           <button
             className={`px-6 py-2 min-w-48 min-h-12 rounded text-white relative hover:bg-purple-600/90 transition-colors shadow overflow-hidden ${
@@ -301,7 +300,7 @@ export default function App() {
           {!keyword
     ? 'Waiting for input'
     : state.loading
-      ? 'Loading'
+      ? `Loading your query: ${keyword}`
       : 'Please try again'}
           </p>
         )}
