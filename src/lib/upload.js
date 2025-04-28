@@ -8,6 +8,8 @@ import {
 import OpenAI from "openai";
 // Import keyword mapping and list of keywords to search for in transcription
 import { myKeyWord, myKeyWordFindKeys } from "../components/MyKeyWord";
+
+let currentKeyword = null;
 // Initialize S3 client for R2 storage with credentials and endpoint from environment variables
 const s3 = new S3Client({
   region: "auto",
@@ -44,7 +46,7 @@ export async function generateAIVoice(file) {
     myKeyWordFindKeys.forEach((item) => {
       if (transcription.text.toLowerCase().includes(item.toLowerCase())) {
         text.push([item, myKeyWord[item]]);
-        console.log('text array: ', text);
+        currentKeyword = text[0][0];
       }
     });
 
@@ -117,3 +119,5 @@ export async function deleteData(fileName) {
     throw new Error("Failed to delete file. Please try again.");
   }
 }
+
+export currentKeyword;
