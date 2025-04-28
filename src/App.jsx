@@ -180,7 +180,7 @@ function App() {
 
   return (
     <>
-      <div className="min-h-screen grid place-items-center font-inter bg-gray-200 grid grid-cols-2 sm:grid-cols-1">
+      <div className="min-h-screen place-items-center font-inter bg-gray-200 grid grid-cols-1 md:grid-cols-2">
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-6xl mb-7 font-semibold text-purple-600">
             Speech To AI-Speech
