@@ -248,11 +248,8 @@ export default function App() {
             )}
           </button>
         </div>
-        {audioFiles.length > 0 ? (
+        {matchingFile ? (
           <div>
-            <h2 className="text-center  font-semibold text-purple-600 text-4xl leading-relaxed">
-              Audio Files
-            </h2>
             {matchingFile && (
       <div key={matchingFile.Key}>
         <p className="text-base uppercase leading-relaxed mt-2 mb-2">
@@ -273,7 +270,7 @@ export default function App() {
         </div>
       </div>
     )}
-            <ul>
+{/*             <ul>
               
               {audioFiles.map((file) => (
                 <li key={file.Key}>
@@ -297,11 +294,11 @@ export default function App() {
                   </div>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         ) : (
           <p className="text-center  font-semibold text-purple-600 text-4xl leading-relaxed">
-            No Data
+            {keyword ? 'Please try again' : 'Waiting for input' }
           </p>
         )}
       </div>
