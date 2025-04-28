@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { uploadAIVoice, generateAIVoice, deleteData, currentKeyword } from "./lib/upload";
+import { uploadAIVoice, generateAIVoice, deleteData } from "./lib/upload";
 import { LoaderIcon } from "./components/Icons";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
@@ -28,15 +28,9 @@ export default function App() {
     loading: false,    // Are we uploading or processing audio?
     error: null,       // Any error messages
   });
-  const [keyword, setKeyword] = useState(currentKeyword);
+  const [keyword, setKeyword] = useState(null);
 
-  useEffect(() => {
-    if(keyword !== null) {
-      console.log('state word is: ', keyword)
-      console.log('current keyword is: ', currentKeyword)
-    }
-    
-  }). [currentKeyword])
+  
 
     // State to hold the list of audio files fetched from the bucket
   const [audioFiles, setAudioFiles] = useState([]);
@@ -68,9 +62,13 @@ export default function App() {
 
     try {
        // Transcribe and generate AI voice
-      const audio = await generateAIVoice(file);
+      // const audio = await generateAIVoice(file);
       // Upload the generated audio
-      await uploadAIVoice(audio);
+      // await uploadAIVoice(audio);
+       const [foundKeyword, mp3] = await generateAIVoice(file);
+      setKeyword(foundKeyword);
+      await uploadAIVoice([foundKeyword, mp3]);
+      
       setState((prevState) => ({
         ...prevState,
         loading: false,
@@ -225,7 +223,8 @@ export default function App() {
       <div className="min-h-screen place-items-center font-inter bg-gray-200 grid grid-cols-1 md:grid-cols-2 p-[1em]">
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-6xl mb-7 font-semibold text-purple-600">
-            Speech To AI-Speech
+            Speech To AI-Speech 
+            {keyword && <p>{keyword}</p>}
           </h1>
           <button
             className={`px-6 py-2 min-w-48 min-h-12 rounded text-white relative hover:bg-purple-600/90 transition-colors shadow overflow-hidden ${
