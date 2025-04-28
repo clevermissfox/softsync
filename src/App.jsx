@@ -29,8 +29,6 @@ export default function App() {
     error: null,       // Any error messages
   });
   const [keyword, setKeyword] = useState(null);
-  const matchingFile = audioFiles.find(file => keyword && file.Key === `${keyword}.mp3`);
-
   
 
     // State to hold the list of audio files fetched from the bucket
@@ -43,6 +41,7 @@ export default function App() {
 
   // Helper to show toast notifications
   const notify = (message) => toast(message);
+  const matchingFile = audioFiles.find(file => keyword && file.Key === `${keyword}.mp3`);
   
   // Toggles recording status between PLAY and STOP
   const handleListening = () =>
