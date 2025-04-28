@@ -298,7 +298,11 @@ export default function App() {
           </div>
         ) : (
           <p className="text-center  font-semibold text-purple-600 text-4xl leading-relaxed">
-            {keyword ? 'Please try again' : 'Waiting for input' }
+          {!keyword
+    ? 'Waiting for input'
+    : state.loading
+      ? 'Loading'
+      : 'Please try again'}
           </p>
         )}
       </div>
