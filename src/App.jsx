@@ -163,6 +163,12 @@ export default function App() {
   useEffect(() => {
     fetchFiles();
   }, []);
+  
+  useEffect(() => {
+    console.log(audioFiles)
+  }, [audioFiles]);
+
+  
 
    // Fetches the list of .mp3 files from the storage bucket and updates state
   const fetchFiles = async () => {
