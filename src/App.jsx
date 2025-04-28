@@ -8,6 +8,8 @@ import Swal from "sweetalert2";
 // or via CommonJS
 
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
+
+// S3 client setup for interacting with the storage bucket
 const s3 = new S3Client({
   region: "auto",
   endpoint: import.meta.env.VITE_R2_ENDPOINT,
@@ -19,39 +21,53 @@ const s3 = new S3Client({
 const PLAY = "PLAY";
 const STOP = "STOP";
 
-function App() {
+export default function App() {
+    // State to manage recording status, loading state, and error messages
   const [state, setState] = useState({
-    status: STOP,
-    loading: false,
-    error: null,
+    status: STOP,      // Are we currently recording? ("PLAY" or "STOP")
+    loading: false,    // Are we uploading or processing audio?
+    error: null,       // Any error messages
   });
 
-  const audioRef = useRef([]);
-  const recorderRef = useRef(null);
-  const streamRef = useRef(null);
+    // State to hold the list of audio files fetched from the bucket
+  const [audioFiles, setAudioFiles] = useState([]);
 
+  // Refs to manage audio recording and stream
+  const audioRef = useRef([]);        // Holds audio data chunks during recording
+  const recorderRef = useRef(null);   // MediaRecorder instance
+  const streamRef = useRef(null);     // MediaStream instance
+
+  // Helper to show toast notifications
   const notify = (message) => toast(message);
-
+  
+  // Toggles recording status between PLAY and STOP
   const handleListening = () =>
     setState((prevState) => ({
       ...prevState,
       status: prevState.status === PLAY ? STOP : PLAY,
     }));
 
+  
+// Handles uploading the recorded audio:
+  // 1. Transcribes audio and generates AI voice (TTS)
+  // 2. Uploads the resulting file to the bucket
+  // 3. Refreshes the file list and shows notifications
   const uploadAudio = async (blob) => {
     setState((prevState) => ({ ...prevState, loading: true }));
     notify("Uploading audio... Please wait.");
     const file = new File([blob], "audio.mp3", { type: blob.type });
 
     try {
+       // Transcribe and generate AI voice
       const audio = await generateAIVoice(file);
+      // Upload the generated audio
       await uploadAIVoice(audio);
       setState((prevState) => ({
         ...prevState,
         loading: false,
         error: null,
       }));
-
+    // Refresh file list
       await fetchFiles();
       notify("Audio uploaded successfully!");
     } catch (error) {
@@ -65,22 +81,24 @@ function App() {
       notify(`Error: ${error.message}`);
     }
   };
-
+  
+  // Effect to handle starting/stopping audio recording when status changes
   useEffect(() => {
     const processing = async () => {
       const { status } = state;
       if (status === PLAY) {
+         // Start recording
         try {
           const stream = await navigator.mediaDevices.getUserMedia({
             audio: true,
           });
           streamRef.current = stream;
           recorderRef.current = new MediaRecorder(stream);
-
+          // Collect audio data chunks
           recorderRef.current.ondataavailable = (event) => {
             audioRef.current.push(event.data);
           };
-
+        // When recording stops, process the audio
           recorderRef.current.onstop = async () => {
             const audioBlob = new Blob(audioRef.current, {
               type: "audio/mp3",
@@ -97,7 +115,7 @@ function App() {
               notify(errorMessage);
             }
           };
-
+         // Start recording, collect data every second
           recorderRef.current.start(1000);
           audioRef.current = [];
         } catch (error) {
@@ -110,6 +128,7 @@ function App() {
           notify(errorMessage);
         }
       } else if (status === STOP && recorderRef.current) {
+         // Stop recording and release resources
         recorderRef.current.stop();
         if (streamRef.current) {
           streamRef.current.getTracks().forEach((track) => track.stop());
@@ -117,6 +136,8 @@ function App() {
       }
     };
     processing();
+
+     // Cleanup: stop recording and release microphone if component unmounts
     return () => {
       if (recorderRef.current) {
         recorderRef.current.stop();
@@ -125,19 +146,23 @@ function App() {
         streamRef.current.getTracks().forEach((track) => track.stop());
       }
     };
-  }, [state.status]);
+  }, [state.status]); // Runs whenever recording status changes
   const { status, loading } = state;
-  const [audioFiles, setAudioFiles] = useState([]);
+  
 
+  // Effect to fetch audio files from the bucket when the component mounts
   useEffect(() => {
     fetchFiles();
   }, []);
+
+   // Fetches the list of .mp3 files from the storage bucket and updates state
   const fetchFiles = async () => {
     const params = { Bucket: import.meta.env.VITE_R2_BUCKET_NAME };
     try {
       const data = await s3.send(new ListObjectsV2Command(params));
 
       // Ensure that data.Contents is defined and is an array
+       // Only keep files ending in .mp3
       const mp3Files = data.Contents
         ? data.Contents.filter((file) => file.Key.endsWith(".mp3"))
         : [];
@@ -147,7 +172,9 @@ function App() {
       console.error("Error fetching audio files:", error);
     }
   };
-  const handelDelete = async (item) => {
+
+  // Handles deleting an audio file from the bucket, with confirmation dialog
+  const handleDelete = async (item) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -159,8 +186,8 @@ function App() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await deleteData(item);
-          await fetchFiles();
+          await deleteData(item);      // Delete the file from the bucket
+          await fetchFiles();         // Refresh file list
 
           Swal.fire({
             title: "Deleted!",
@@ -223,7 +250,7 @@ function App() {
                       type="audio/mpeg"
                     ></audio>
                     <button
-                      onClick={() => handelDelete(file.Key)}
+                      onClick={() => handleDelete(file.Key)}
                       className="py-2 px-4 bg-red-500 text-white rounded"
                     >
                       Delete
@@ -244,4 +271,4 @@ function App() {
   );
 }
 
-export default App;
+
