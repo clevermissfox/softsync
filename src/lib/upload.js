@@ -1,8 +1,10 @@
+// Import S3 client and commands for interacting with object storage
 import {
   S3Client,
   PutObjectCommand,
   DeleteObjectCommand,
 } from "@aws-sdk/client-s3";
+// Import OpenAI SDK for transcription and TTS
 import OpenAI from "openai";
 import { myKeyWord, myKeyWordFindKeys } from "../components/MyKeyWord";
 
@@ -33,6 +35,7 @@ export async function generateAIVoice(file) {
     myKeyWordFindKeys.forEach((item) => {
       if (transcription.text.toLowerCase().includes(item.toLowerCase())) {
         text.push([item, myKeyWord[item]]);
+        console.log('text array: ', text);
       }
     });
 
