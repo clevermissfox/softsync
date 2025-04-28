@@ -36,7 +36,7 @@ export default function App() {
       console.log('current keyword is: ', currentKeyword)
     }
     
-  }. currentKeyword)
+  }. [currentKeyword])
 
     // State to hold the list of audio files fetched from the bucket
   const [audioFiles, setAudioFiles] = useState([]);
