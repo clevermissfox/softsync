@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { uploadAIVoice, generateAIVoice, deleteData } from "./lib/upload";
+import { uploadAIVoice, generateAIVoice, deleteData, currentKeyword } from "./lib/upload";
 import { LoaderIcon } from "./components/Icons";
 import "react-toastify/dist/ReactToastify.css";
 import Swal from "sweetalert2";
@@ -28,6 +28,15 @@ export default function App() {
     loading: false,    // Are we uploading or processing audio?
     error: null,       // Any error messages
   });
+  const [keyword, setKeyword] = useState(currentKeyword);
+
+  useEffect(() => {
+    if(keyword !== null) {
+      console.log('state word is: ', keyword)
+      console.log('current keyword is: ', currentKeyword)
+    }
+    
+  }. currentKeyword)
 
     // State to hold the list of audio files fetched from the bucket
   const [audioFiles, setAudioFiles] = useState([]);
