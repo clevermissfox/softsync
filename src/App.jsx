@@ -254,9 +254,11 @@ export default function App() {
             <h2 className="text-center  font-semibold text-purple-600 text-4xl leading-relaxed">
               Audio Files
             </h2>
-             {matchingFile && (
+            {matchingFile && (
       <div key={matchingFile.Key}>
-        <p className="text-base uppercase leading-relaxed mt-2 mb-2">{matchingFile.Key}</p>
+        <p className="text-base uppercase leading-relaxed mt-2 mb-2">
+          {matchingFile.Key}
+        </p>
         <div className="flex justify-center items-center gap-3">
           <audio
             controls
@@ -271,28 +273,9 @@ export default function App() {
           </button>
         </div>
       </div>
-    )
+    )}
             <ul>
-               {audioFiles
-    .filter(file => keyword && file.Key === `${keyword}.mp3`)
-    .map(file => (
-       <p className="text-base uppercase leading-relaxed mt-2 mb-2" key={file.Key}>{file.Key}</p>
-       <div className="flex justify-center items-center gap-3">
-                    <audio
-                      controls
-                      src={`${import.meta.env.VITE_PUBLIC_R2_BUCKET_URL}/${
-                        file.Key
-                      }`}
-                      type="audio/mpeg"
-                    ></audio>
-                    <button
-                      onClick={() => handleDelete(file.Key)}
-                      className="py-2 px-4 bg-red-500 text-white rounded"
-                    >
-                      Delete
-                    </button>
-                  </div>
-    ))}
+              
               {audioFiles.map((file) => (
                 <li key={file.Key}>
                   <p className="text-base uppercase leading-relaxed mt-2 mb-2">
