@@ -226,7 +226,7 @@ export default function App() {
     <>
       <div className="min-h-screen place-items-center font-inter bg-gray-200 grid grid-cols-1 md:grid-cols-2 p-[1em]">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-6xl mb-7 font-semibold text-purple-600">
+          <h1 className="text-6xl sm:text-4xl mb-7 font-semibold text-purple-600 text-center">
             Speech To AI-Speech 
           </h1>
           <button
