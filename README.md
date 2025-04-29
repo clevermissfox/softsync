@@ -24,7 +24,7 @@ pnpm install
 ### Set Up Environment Variables
 
 ```bash
-Create a .env file in the root of the project to define your environment-specific variables. Use the .env.example file as a reference.
+Create a .env file in the root of the project to define your environment-specific variables. Use the .env.sample file as a reference.
 ```
 
 #### Environment Variables
@@ -106,7 +106,6 @@ And Your cloudflare Audio file link ------
 https://dash.cloudflare.com/813062f12232b3cc97c5d890147d2be9/r2/default/buckets/missfox
 
 ### Read more
-- its working ??
 
 [See Instruction](./instructions/README.md)
 
