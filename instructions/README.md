@@ -52,7 +52,7 @@
 
 ## Getting Public Bucket URL
 
-Click on your bucket name (e.g. `missfox`) and navigate to 'Settings', scroll down to `R2.dev subdomain` section where you will enable access and retrieve the value of `Public R2.dev Bucket URL`; This is what the value of the environment variable `VITE_PUBLIC_R2_BUCKET_URL` will be 
+Click on your bucket name (e.g. `missfox`) and navigate to 'Settings', scroll down to `R2.dev subdomain` section where you will enable access and retrieve the value of `Public R2.dev Bucket URL` (or if you've connected a custom domain to your bucket, that will also work as the public bucket url); This is what the value of the environment variable `VITE_PUBLIC_R2_BUCKET_URL` will be 
 ![image info](./14-Public%20Bucket%20URL.png)
 
 ## Retrieving `R2_ACCESS_KEY_ID` and `R2_SECRET_ACCESS_KEY`
