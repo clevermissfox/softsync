@@ -227,7 +227,7 @@ export default function App() {
       <div className="min-h-screen place-items-center font-inter bg-gray-200 grid grid-cols-1 md:grid-cols-2 p-[1em]">
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-6xl sm:text-4xl mb-7 font-semibold text-purple-600 text-center">
-            Speech To AI-Speech 
+            Your Businesses Custom Alexa/Siri- Alexei!
           </h1>
           <button
             className={`px-6 py-2 min-w-48 min-h-12 rounded text-white relative hover:bg-purple-600/90 transition-colors shadow overflow-hidden ${
