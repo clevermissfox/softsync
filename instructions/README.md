@@ -55,5 +55,8 @@
 Click on your bucket name (e.g. `missfox`) and navigate to 'Settings', scroll down to `R2.dev subdomain` section where you will enable access and retrieve the value of `Public R2.dev Bucket URL`; This is what the value of the environment variable `VITE_PUBLIC_R2_BUCKET_URL` will be 
 ![image info](./14-Public%20Bucket%20URL.png)
 
+## Retrieving `R2_ACCESS_KEY_ID` and `R2_SECRET_ACCESS_KEY`
+On the R2 Object Storage Page where all of your buckets are listed, trigger `{} API` dropdown then select `Manage API Tokens` and create a `User API Token`; you will be given an access key ID and secret access key which will be the values for the respective env variables
+![image_info](./15-get_accessID_accessKey.png)
 
 ##Deployed on Cloudflare Pages
