@@ -50,4 +50,10 @@
 
 ![image info](./13.jpeg)
 
+## Getting Public Bucket URL
+
+Click on your bucket name (e.g. `missfox`) and navigate to 'Settings', scroll down to `R2.dev subdomain` section where you will enable access and retrieve the value of `Public R2.dev Bucket URL`; This is what the value of the environment variable `VITE_PUBLIC_R2_BUCKET_URL` will be 
+![image info](./14-Public%20Bucket%20URL.png)
+
+
 ##Deployed on Cloudflare Pages
