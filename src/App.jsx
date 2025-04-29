@@ -262,7 +262,7 @@ export default function App() {
           ></audio>
           <button
             onClick={() => handleDelete(matchingFile.Key)}
-            className="py-2 px-4 bg-red-500 text-white rounded"
+            className="py-2 px-4 bg-purple-500 text-white rounded"
           >
             Delete
           </button>
@@ -298,10 +298,10 @@ export default function App() {
         ) : (
           <p className="text-center  font-semibold text-purple-600 text-4xl leading-relaxed">
           {!keyword
-    ? 'Waiting for input'
-    : state.loading
-      ? `Loading your query: ${keyword}`
-      : 'Please try again'}
+              ? 'Waiting for input'
+              : state.loading
+                ? `Loading your query: ${keyword}`
+                : 'Please try again'}
           </p>
         )}
       </div>
