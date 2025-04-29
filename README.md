@@ -35,7 +35,7 @@ To configure the project, create a `.env` file in the root directory. Refer to t
 #### Resource Hints
 
 - **OpenAI API Key**: Obtain from your [OpenAI dashboard](https://platform.openai.com).
-- **Cloudflare Credentials**: Get these from the [Cloudflare dashboard](https://dash.cloudflare.com), under R2 storage settings. get the R2_ACCESS_KEY and R2_SECRET_ACCESS_KEY by managing api settings from R3, add a user and you get these tokens. For Public Bucket URL, see [Instruction image 14](./instructions/14-Public%20Bucket%20URL.png)
+- **Cloudflare Credentials**: Get these from the [Cloudflare dashboard](https://dash.cloudflare.com), under R2 storage settings. get the R2_ACCESS_KEY and R2_SECRET_ACCESS_KEY by managing api settings from R3 [see /instructions/15](./instructions/15-get_accessID_accessKey.png), add a user and you get these tokens. For Public Bucket URL, see [Instruction image 14](./instructions/14-Public%20Bucket%20URL.png)
 - **Security**: Ensure these keys remain secure and are not shared publicly.
 
   > To avoid **cors** error add these below code into your bucket cors section
